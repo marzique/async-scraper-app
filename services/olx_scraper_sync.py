@@ -1,4 +1,3 @@
-import asyncio
 import random
 
 import requests
@@ -6,10 +5,8 @@ from bs4 import BeautifulSoup
 
 from constants import OLX_BASE_URL
 
-STORE_URL = "https://mmastyle.com.ua/ru/catalog/bokserskie_perchatki"
 
-
-class OLXScraperService:
+class OLXSyncScraperService:
     @staticmethod
     def get_page_html(url):
         response = requests.get(url)
@@ -28,11 +25,11 @@ class OLXScraperService:
                     links.append(full_link)
         return links
 
-    async def get_all_links_data(self, urls):
-        all_data = await asyncio.gather(*(self.scrape_glove_page(url) for url in urls))
+    def get_all_links_data(self, urls):
+        all_data = [self.scrape_glove_page(url) for url in urls]
         print(all_data)
 
-    async def scrape_glove_page(self, url) -> dict:
+    def scrape_glove_page(self, url) -> dict:
         print(f"Scraping url: {url}")
         html = self.get_page_html(url)
         soup = BeautifulSoup(html, "html.parser")
@@ -66,4 +63,4 @@ class OLXScraperService:
         return description
 
 
-olx_scraper_service = OLXScraperService()
+olx_sync_scraper_service = OLXSyncScraperService()
