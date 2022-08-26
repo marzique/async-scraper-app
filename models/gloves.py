@@ -13,7 +13,21 @@ class Glove(Document):
     color = StringField()
     description = StringField()
     url = URLField()
-    olx_url = URLField()
+    olx_url = URLField(unique=True)
     updated_at = DateTimeField(default=arrow.utcnow().isoformat)
     price = IntField(required=True)
 
+    meta = {
+        'indexes': ['olx_url'],
+        'ordering': ['-updated_at']
+    }
+
+    @classmethod
+    def bulk_insert_gloves(cls, data):
+        for glove_data in data:
+            print(f"olx url: {glove_data['olx_url']}\n\n\n\n\n\n")
+            exists = cls.objects(olx_url=glove_data["olx_url"])
+            if not exists:
+                cls.objects.insert(Glove(**glove_data))
+            else:
+                print("item already exists")

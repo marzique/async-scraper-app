@@ -4,6 +4,7 @@ import timeit
 from mongoengine import connect
 
 from constants import OLX_BASE_URL
+from models.gloves import Glove
 from services.olx_scraper_true_async import olx_scraper_true_async_service
 
 
@@ -19,4 +20,4 @@ asyncio.run(olx_scraper_true_async_service.get_all_links_data(links))
 execution_time = timeit.default_timer() - start
 print("Program Executed in " + str(execution_time))
 
-print(olx_scraper_true_async_service.data)
+insert = Glove.bulk_insert_gloves(olx_scraper_true_async_service.data)
