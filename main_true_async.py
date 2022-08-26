@@ -17,5 +17,6 @@ links = asyncio.run(olx_scraper_true_async_service.get_all_links(f"{OLX_BASE_URL
 asyncio.run(olx_scraper_true_async_service.get_all_links_data(links))
 
 execution_time = timeit.default_timer() - start
-print("Program Executed in "+str(execution_time))
+print("Program Executed in " + str(execution_time))
 
+print(olx_scraper_true_async_service.data)

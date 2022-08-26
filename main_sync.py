@@ -16,4 +16,4 @@ start = timeit.default_timer()
 olx_sync_scraper_service.get_all_links_data(links)
 
 execution_time = timeit.default_timer() - start
-print("Program Executed in "+str(execution_time))
+print("Program Executed in " + str(execution_time))

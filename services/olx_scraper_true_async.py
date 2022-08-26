@@ -11,6 +11,7 @@ class OLXTrueSyncScraperService:
     last_page = None
     current_url = None
     links = []
+    data = []
 
     @staticmethod
     async def get_page_html(session, url):
@@ -59,7 +60,7 @@ class OLXTrueSyncScraperService:
                     task = asyncio.create_task(self.scrape_glove_page(session, url))
                     tasks.append(task)
                 results = await asyncio.gather(*tasks)
-                print(results)
+                self.data = results
 
     async def scrape_glove_page(self, session, url) -> dict:
         print(f"Scraping url: {url}")

@@ -19,5 +19,4 @@ start = timeit.default_timer()
 asyncio.run(olx_scraper_fake_async_service.get_all_links_data(links))
 
 execution_time = timeit.default_timer() - start
-print("Program Executed in "+str(execution_time))
-
+print("Program Executed in " + str(execution_time))
