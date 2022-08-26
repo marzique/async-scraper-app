@@ -16,3 +16,4 @@ class Glove(Document):
     olx_url = URLField()
     updated_at = DateTimeField(default=arrow.utcnow().isoformat)
     price = IntField(required=True)
+
